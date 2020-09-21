@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+FFaker::Random.seed = 12345
+
+1.upto(10000) do |i|
+  Article.create(
+    title: "Title#{i}",
+    content: [
+      FFaker::AddressJA.address,
+      FFaker::JobJA.title,
+      FFaker::LoremJA.paragraphs
+    ].join("\n")
+  )
+end
