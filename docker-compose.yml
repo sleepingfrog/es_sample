@@ -36,8 +36,8 @@ x-backend: &backend
     PSQL_HISTFILE: /app/log/.psql_history
     EDITOR: vi
   depends_on:
-    postgres:
-      condition: service_healthy
+    - postgres
+    - es
 
 services:
   runner:
@@ -81,9 +81,27 @@ services:
       <<: *env
       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
 
+  es:
+    build:
+      context: .
+      dockerfile: ./.dockerdev/es/Dockerfile
+    environment:
+      - "ES_JAVA_OPTS=-Xms400m -Xmx400m"
+      - "xpack.security.enabled=false"
+      - "xpack.monitoring.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es:/usr/share/elasticsearch/data
+    ports:
+      - 127.0.0.1:9200:9200
+
 volumes:
   postgres:
   bundle:
   node_modules:
   rails_cache:
   packs:
+  es:
