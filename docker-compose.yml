@@ -35,6 +35,8 @@ x-backend: &backend
     HISTFILE: /app/log/.bash_history
     PSQL_HISTFILE: /app/log/.psql_history
     EDITOR: vi
+    ELASTICSEARCH_HOST: es
+    ELASTICSEARCH_PORT: 9200
   depends_on:
     - postgres
     - es
