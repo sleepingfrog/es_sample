@@ -38,8 +38,10 @@ x-backend: &backend
     ELASTICSEARCH_HOST: es
     ELASTICSEARCH_PORT: 9200
   depends_on:
-    - postgres
-    - es
+    postgres:
+      condition: service_healthy
+    es:
+      condition: service_healthy
 
 services:
   runner:
@@ -100,6 +102,10 @@ services:
       - es:/usr/share/elasticsearch/data
     ports:
       - 127.0.0.1:9200:9200
+    healthcheck:
+      interval: 20s
+      retries: 10
+      test: curl -s http://localhost:9200/_cluster/health | grep -vq '"status":"red"'
 
 volumes:
   postgres:
