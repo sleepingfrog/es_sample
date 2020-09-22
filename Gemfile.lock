@@ -77,16 +77,16 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
-    elasticsearch (6.8.2)
-      elasticsearch-api (= 6.8.2)
-      elasticsearch-transport (= 6.8.2)
-    elasticsearch-api (6.8.2)
+    elasticsearch (7.9.0)
+      elasticsearch-api (= 7.9.0)
+      elasticsearch-transport (= 7.9.0)
+    elasticsearch-api (7.9.0)
       multi_json
-    elasticsearch-model (6.1.1)
+    elasticsearch-model (7.1.1)
       activesupport (> 3)
-      elasticsearch (~> 6)
+      elasticsearch (> 1)
       hashie
-    elasticsearch-transport (6.8.2)
+    elasticsearch-transport (7.9.0)
       faraday (~> 1)
       multi_json
     erubi (1.9.0)
@@ -220,7 +220,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  elasticsearch-model (~> 6.1)
+  elasticsearch-model
   ffaker
   jbuilder (~> 2.7)
   listen (~> 3.2)

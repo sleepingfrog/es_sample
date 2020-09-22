@@ -1,2 +1,2 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+FROM elasticsearch:7.9.1
 RUN bin/elasticsearch-plugin install analysis-kuromoji

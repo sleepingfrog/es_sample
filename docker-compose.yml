@@ -88,9 +88,10 @@ services:
       context: .
       dockerfile: ./.dockerdev/es/Dockerfile
     environment:
+      - node.name=es01
+      - cluster.name=es-sample-cluster
+      - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms400m -Xmx400m"
-      - "xpack.security.enabled=false"
-      - "xpack.monitoring.enabled=false"
     ulimits:
       memlock:
         soft: -1
