@@ -1,5 +1,5 @@
 # README
 
-'''sh
+```sh
 dip provision
-'''
+```
