@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+puts 'start seed'
 FFaker::Random.seed = 12345
 
 1.upto(10000) do |i|
@@ -19,3 +20,9 @@ FFaker::Random.seed = 12345
     ].join("\n")
   )
 end
+puts 'es create_index'
+Article.create_index!
+puts 'es import'
+Article.__elasticsearch__.import
+
+puts 'seed end'
