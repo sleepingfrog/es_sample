@@ -13,11 +13,28 @@ class Article < ApplicationRecord
 
     index_name "es_article_#{Rails.env}"
 
-    settings do
+    settings index: {
+      analysis: {
+        tokenizer: {
+          ngram: {
+            type: 'nGram',
+            min_gram: 2,
+            max_gram: 2,
+            token_chars: ['letter', 'digit'],
+          }
+        },
+        analyzer: {
+          ngram_analyzer: {
+            type: 'custom',
+            tokenizer: 'ngram'
+          }
+        }
+      }
+    } do
       mappings dynamic: false do
         indexes :id,      type: 'integer'
-        indexes :title,   type: 'text', analyzer: 'kuromoji'
-        indexes :content, type: 'text', analyzer: 'kuromoji'
+        indexes :title,   type: 'text', analyzer: 'ngram_analyzer'
+        indexes :content, type: 'text', analyzer: 'ngram_analyzer'
       end
     end
 
